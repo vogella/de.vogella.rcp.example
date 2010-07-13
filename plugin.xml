@@ -46,5 +46,13 @@
          </view>
       </perspectiveExtension>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="de.vogella.rcp.example.Handler.InfoHandler"
+            id="de.vogella.rcp.example.info"
+            name="Info">
+      </command>
+   </extension>
 
 </plugin>
