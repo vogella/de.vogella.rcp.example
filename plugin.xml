@@ -68,6 +68,10 @@
             </command>
          </menu>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.tool">
+      </menuContribution>
    </extension>
 
 </plugin>
