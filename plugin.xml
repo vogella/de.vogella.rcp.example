@@ -19,5 +19,32 @@
             id="de.vogella.rcp.example.perspective">
       </perspective>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="de.vogella.rcp.example.parts.ViewPart1"
+            id="de.vogella.rcp.example.view1"
+            name="SimpleView"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="*">
+         <view
+               closeable="true"
+               id="de.vogella.rcp.example.view1"
+               minimized="false"
+               moveable="true"
+               ratio="0.95f"
+               relationship="left"
+               relative="org.eclipse.ui.editorss"
+               showTitle="true"
+               standalone="true"
+               visible="true">
+         </view>
+      </perspectiveExtension>
+   </extension>
 
 </plugin>
