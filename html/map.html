@@ -1,0 +1,131 @@
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN" 
+
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <title>Google Maps JavaScript API Example</title>
+
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg&sensor=false"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+
+	var map;
+	var counter; 
+	
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(51.5518,8.380737), 6);
+        map.setUIToDefault();
+		counter = 0;
+		// Callback to Java from JavaScript
+	    theJavaFunction(map.getCenter().lat(), map.getCenter().lng());
+
+      }
+
+    }
+	
+	function OnClickMarkerListenerFunction(){
+		this.counter = 0;
+		var myEventListener = GEvent.bind(this.map, "click", this, function(overlay, latlng) {
+		if (this.counter == 0) {
+			if (latlng) {
+				this.map.addOverlay(new GMarker(latlng))
+				this.counter++;
+			} else if (overlay instanceof GMarker) {
+				this.removeOverlay(marker)
+			}
+		} else {
+		GEvent.removeListener(myEventListener);
+    }
+  }); 
+}
+	
+	
+
+    function createMarker(){
+		var lat = map.getCenter().lat();
+		var lng = map.getCenter().lng();
+        var point = new GLatLng(lat,lng);
+		var d=new Date();
+
+		var marker = new GMarker(point, {draggable: true});
+
+		GEvent.addListener(marker, "dragstart", function() {
+			map.closeInfoWindow();
+		});
+
+		GEvent.addListener(marker, "dragend", function() {
+		});
+
+		map.addOverlay(marker);
+		addMassiveData();
+    }
+	
+	function createLogAnalyzerMarker(lat, lng){
+
+        var point = new GLatLng(lat,lng);
+		var d=new Date();
+
+		var marker = new GMarker(point, {draggable: true});
+
+		GEvent.addListener(marker, "dragstart", function() {
+			map.closeInfoWindow();
+		});
+
+		GEvent.addListener(marker, "dragend", function() {
+		});
+
+		map.addOverlay(marker);
+		
+
+    }
+	
+	function drawTheLine(){
+		var points = [];
+		var point = new GLatLng(53.50904, 11.04891);
+		points.push (point);
+		point = new GLatLng(48.78059, 9.17994);
+		points.push (point);
+		map.addOverlay (new GPolyline (points));
+	}
+	
+	function drawLane(x1,y1,x2,y2){
+		var points = [];
+		var point = new GLatLng(y1, x1);
+		points.push (point);
+		point = new GLatLng(y2, x2);
+		points.push (point);
+		map.addOverlay (new GPolyline (points));
+	}
+
+	function addMassiveData(){
+	// Add 10 markers to the map at random locations
+		var bounds = map.getBounds();
+        var southWest = bounds.getSouthWest();
+        var northEast = bounds.getNorthEast();
+        var lngSpan = northEast.lng() - southWest.lng();
+        var latSpan = northEast.lat() - southWest.lat();
+        for (var i = 0; i < 100; i++) {
+         var point = new GLatLng(southWest.lat() + latSpan * Math.random(),
+               southWest.lng() + lngSpan * Math.random());
+        map.addOverlay(new GMarker(point));
+		}
+	}
+
+    </script>
+
+  </head>
+
+  <body onload="initialize()" >
+
+    <div id="map_canvas" style="width: 600px; height: 400px"></div>
+
+  </body>
+
+</html>

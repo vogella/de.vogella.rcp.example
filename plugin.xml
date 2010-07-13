@@ -27,6 +27,12 @@
             name="SimpleView"
             restorable="true">
       </view>
+      <view
+            class="de.vogella.rcp.example.parts.MapView"
+            id="de.vogella.rcp.example.parts.mapview"
+            name="MapView"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
@@ -39,6 +45,18 @@
                moveable="true"
                ratio="0.95f"
                relationship="left"
+               relative="org.eclipse.ui.editorss"
+               showTitle="true"
+               standalone="true"
+               visible="true">
+         </view>
+         <view
+               closeable="true"
+               id="de.vogella.rcp.example.parts.mapview"
+               minimized="false"
+               moveable="true"
+               ratio="0.95f"
+               relationship="right"
                relative="org.eclipse.ui.editorss"
                showTitle="true"
                standalone="true"
@@ -64,6 +82,11 @@
             <command
                   commandId="de.vogella.rcp.example.info"
                   label="Info"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.ui.window.resetPerspective"
+                  label="Reset"
                   style="push">
             </command>
          </menu>
