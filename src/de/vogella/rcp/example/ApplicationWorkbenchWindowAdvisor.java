@@ -21,6 +21,5 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         configurer.setInitialSize(new Point(400, 300));
         configurer.setShowStatusLine(false);
         configurer.setTitle("Hello RCP"); //$NON-NLS-1$
-
     }
 }
